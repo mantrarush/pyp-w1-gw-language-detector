@@ -2,7 +2,7 @@
 """This is the entry point of the program."""
 
 from .languages import LANGUAGES
-import string 
+from string import punctuation
 """
         languages_words = {
             "Spanish": 90,
@@ -29,8 +29,10 @@ def calculate_percentages(text_occurrences): #Gives the statistics of matches wi
     
     return stats
     
-def clean_words(text): # removes punctuations from the text 
-   return text.translate(None, string.punctuation)
+ # removes punctuations from the text 
+def clean_words(text):
+   return ''.join(c for c in text if c not in punctuation)
+
    
 def most_common(text): # finds the most common word that occurs in the text 
     d = dict()
