@@ -83,16 +83,8 @@ class TestLanguageDetector(unittest.TestCase):
             'Spanish': '10.1%'
         }
         self.assertEqual(calculate_percentages(self.text_occurrences), expected)
-        
     
-    def test_max_word(self):    
-        print most_common(self.texts["english"])
-        
-        
-        
-        """
     def test_max_word(self):
         self.assertEqual(most_common(self.texts["english"]),"cat")
-    """
     
     
