@@ -2,8 +2,9 @@
 """This is the entry point of the program."""
 
 from .languages import LANGUAGES
-import string 
-"""
+
+def calculate_percentages(text_occurrences):
+    total_languages_words = [len(lang)]
         languages_words = {
             "Spanish": 90,
             "German": 150
@@ -19,7 +20,6 @@ import string
             "German": "66%"
         }
     """
-def calculate_percentages(text_occurrences): #Gives the statistics of matches with each language
     total_words = {lang["name"]: len(lang["common_words"]) 
                    for lang in LANGUAGES}
     stats = {}
@@ -29,15 +29,14 @@ def calculate_percentages(text_occurrences): #Gives the statistics of matches wi
     
     return stats
     
-def clean_words(text): # removes punctuations from the text 
-   return text.translate(None, string.punctuation)
-   
-def most_common(text): # finds the most common word that occurs in the text 
+
+def most_common(text):
+    pass
+"""
     d = dict()
-    wordlist = clean_words(text).split() #splits per whitespace
+    wordlist = text.split()
     for word in wordlist:
-        word = word.lower() #so that cat and Cat evaluate to the same word
-        if word in d:
+        if word.lower() in d:
             d[word] = d[word] + 1
         else:
             d[word] = 1
@@ -46,21 +45,21 @@ def most_common(text): # finds the most common word that occurs in the text
         #print key, value
         if value >= max_value:
             max_value = value
-            word = key
+            to_return = key
             
-    return word  #returns the most common word found 
-    """Returns the detected language of given text.
-        >break the text into words 
-        >iterate over the words, check whether each word is in the list
-        >"This is a cat". check whether "this" is in the english set 
-    """
+    return to_return    
+"""
+
 def detect_language(text, languages=LANGUAGES):
-    wordlist = clean_words(text).split()
+
+    wordlist = text.split()
     counters = {d['name']: 0 for d in languages}
+ 
     for lang_dict in languages:
         for word in wordlist: 
             if word in lang_dict["common_words"]:
                counters[lang_dict["name"]] += 1
+
     max_value = 0 
     for key, value in counters.iteritems():
         if value >= max_value:
@@ -69,5 +68,8 @@ def detect_language(text, languages=LANGUAGES):
             
     return to_return
     
-
+"""
+Solve with regexes (adjusting and/or adding tests might be needed for this)
+Stats (What word is most common, percentage of languages etc etc)
+"""
         

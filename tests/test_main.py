@@ -2,6 +2,7 @@
 import unittest
 
 from language_detector import detect_language, LANGUAGES
+from language_detector.main import calculate_percentages, most_common
 
 
 class TestLanguageDetector(unittest.TestCase):
@@ -52,9 +53,13 @@ class TestLanguageDetector(unittest.TestCase):
                 erzielte. Inzwischen hat Messi als einziger Spieler mehr als 300
                 Erstligatore erzielt und ist damit Rekordtorschütze
                 der Primera División.
-                """
+                """,
+            "english": "This is a cat. Cat says meow. Cat likes milk. Cat is cat. Cat likes cow."
         }
-
+        self.text_occurrences = {
+            "Spanish": 10,
+            "German": 50
+        }
     def test_detect_language_spanish_with_our_language_specification(self):
         result = detect_language(self.texts["spanish"], self.languages)
         self.assertEqual(result.lower(), 'spanish')
@@ -70,3 +75,24 @@ class TestLanguageDetector(unittest.TestCase):
     def test_detect_language_german_with_module_language_specification(self):
         result = detect_language(self.texts["german"], LANGUAGES)
         self.assertEqual(result.lower(), 'german')
+
+    def test_stats(self):
+        """Should return percentages of words occurrences in text for each language"""
+        expected = {
+            'German': '51.55%', 
+            'Spanish': '10.1%'
+        }
+        self.assertEqual(calculate_percentages(self.text_occurrences), expected)
+        
+    
+    def test_max_word(self):    
+        print most_common(self.texts["english"])
+        
+        
+        
+        """
+    def test_max_word(self):
+        self.assertEqual(most_common(self.texts["english"]),"cat")
+    """
+    
+    
