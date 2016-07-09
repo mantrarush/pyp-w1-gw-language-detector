@@ -23,7 +23,7 @@ def calculate_percentages(text_occurrences): #Gives the statistics of matches wi
     total_words = {lang["name"]: len(lang["common_words"]) 
                    for lang in LANGUAGES}
     stats = {}
-    for key, value in text_occurrences.iteritems():
+    for key, value in text_occurrences.items():
         num = (float(text_occurrences[key]) / float(total_words[key])) * 100
         stats[key] = str(round(num, 2)) + "%"
     
@@ -70,6 +70,3 @@ def detect_language(text, languages=LANGUAGES):
             to_return = key
             
     return to_return
-    
-
-        
