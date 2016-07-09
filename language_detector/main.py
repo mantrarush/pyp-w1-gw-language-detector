@@ -44,7 +44,7 @@ def most_common(text): # finds the most common word that occurs in the text
         else:
             d[word] = 1
     max_value = 0
-    for key, value in d.iteritems():
+    for key, value in d.items():
         #print key, value
         if value >= max_value:
             max_value = value
@@ -64,7 +64,7 @@ def detect_language(text, languages=LANGUAGES):
             if word in lang_dict["common_words"]:
                counters[lang_dict["name"]] += 1
     max_value = 0 
-    for key, value in counters.iteritems():
+    for key, value in counters.items():
         if value >= max_value:
             max_value = value
             to_return = key
